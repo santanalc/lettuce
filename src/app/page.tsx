@@ -166,8 +166,8 @@ export default function Home() {
                 fontes à vista.
               </p>
               <div className="hero-actions">
-                <a className="button button-lime" href="#como-funciona">
-                  Explorar o talhão <Arrow />
+                <a className="button button-lime" href="/login">
+                  Acessar a demo <Arrow />
                 </a>
                 <a className="text-link" href="#produto">
                   Entender o produto <Arrow />
@@ -593,8 +593,8 @@ export default function Home() {
               conseguem dizer e deixa à vista o que ainda precisa ser
               confirmado.
             </p>
-            <a className="button button-lime" href="#como-funciona">
-              Explorar o talhão <Arrow />
+            <a className="button button-lime" href="/login">
+              Acessar a demo <Arrow />
             </a>
           </div>
         </section>

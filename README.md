@@ -1,4 +1,23 @@
-# Create T3 App
+# Lettuce
+
+## Demo autenticada
+
+Copie `.env.example` para `.env`, preencha `DATABASE_URL` e `BETTER_AUTH_SECRET`,
+depois aplique o schema e crie a conta demo:
+
+```bash
+bun install
+bun run db:push
+bun run db:seed
+bun run dev
+```
+
+O acesso usa a conta fixa da demonstração. O seed grava somente um hash de
+senha, é idempotente e falha quando `DEMO_AUTH_ENABLED=false`. Em produção,
+deixe o modo demo desativado ou habilite-o explicitamente apenas para uma
+apresentação controlada.
+
+## Stack
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
