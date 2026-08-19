@@ -138,7 +138,7 @@ export default function Home() {
             <a href="#faq">FAQ</a>
           </div>
 
-          <a className="nav-login" href="https://app1.lettucebr.com">
+          <a className="nav-login" href="/app">
             Entrar
           </a>
           <a className="nav-cta" href="#como-funciona">

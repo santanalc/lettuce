@@ -33,6 +33,11 @@ npx vite build                  # gera dist/
 ## Deploy
 
 ```bash
+# canônico: servido nativo em https://lettucebr.com/app (junto com a landing)
+APP_BASE=/app/ npx vite build   # gera dist/ com base /app/
+# copiar dist/ para out/app/ do build da landing e deployar o projeto "lettucebr"
+
+# standalone (subdomínio legado, será removido):
 npx vite build
 npx wrangler pages deploy dist --project-name=lettucebr-app1
 ```

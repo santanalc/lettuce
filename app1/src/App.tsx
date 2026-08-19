@@ -54,7 +54,7 @@ export function App() {
         <div className="container">
           <div className="header-row">
             <a className="brand" href="#plano" onClick={() => go("plano")}>
-              <img src="/logo-mark.png" alt="" />
+              <img src={`${import.meta.env.BASE_URL}logo-mark.png`} alt="" />
               <span className="brand-text">
                 <strong>Lettuce</strong>
                 <span>Plano de cultivo · Jundiapeba, Mogi das Cruzes</span>
