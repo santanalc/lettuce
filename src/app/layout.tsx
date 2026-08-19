@@ -8,8 +8,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 export const metadata: Metadata = {
   title: "Lettuce — Inteligência para o cinturão verde",
   description:
-    "Planejamento de cultivo para pequenos produtores de hortaliças, com calendário, riscos, custos, mercado, premissas e fontes visíveis.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+    "Planejamento de cultivo para o pequeno produtor de hortaliças: calendário, riscos, custos e mercado num plano com premissas e fontes à vista.",
 };
 
 const geist = Geist({
