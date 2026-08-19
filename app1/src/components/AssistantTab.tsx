@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import type { ChatMessage, ChatTelemetry } from "../App";
+import { responderOffline } from "../data/respostas-demo";
 
 const SUGESTOES = [
   "Por que a alface aparece antes do repolho?",
   "Compara as três culturas para o meu talhão",
-  "Explica o investimento estimado",
+  "Como funciona a conta do lucro?",
   "Qual defensivo devo aplicar contra pulgão?",
 ];
 
-const TIMEOUT_MS = 100_000;
+const DELAY_MIN_MS = 550;
+const DELAY_MAX_MS = 950;
 
 export function AssistantTab({
   planSummary,
@@ -23,46 +25,33 @@ export function AssistantTab({
 }) {
   const [input, setInput] = useState("");
   const [pensando, setPensando] = useState(false);
-  const [erro, setErro] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [history, pensando]);
 
-  async function enviar(texto: string) {
+  function enviar(texto: string) {
     const pergunta = texto.trim();
     if (!pergunta || pensando) return;
-    setErro(null);
     setInput("");
     setPensando(true);
-    const novoHistorico: ChatMessage[] = [...history, { role: "user" as const, content: pergunta }];
-    setHistory(() => novoHistorico);
+    setHistory((prev) => [...prev, { role: "user" as const, content: pergunta }]);
 
     const inicio = performance.now();
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: controller.signal,
-        body: JSON.stringify({ messages: novoHistorico.slice(-10), context: planSummary }),
+    const { resposta } = responderOffline(pergunta);
+    const delay = DELAY_MIN_MS + Math.random() * (DELAY_MAX_MS - DELAY_MIN_MS);
+    window.setTimeout(() => {
+      setHistory((prev) => [...prev, { role: "assistant", content: resposta }]);
+      onTelemetry({
+        ts: new Date().toISOString(),
+        status: "ok",
+        latenciaMs: Math.round(performance.now() - inicio),
+        perguntaChars: pergunta.length,
+        respostaChars: resposta.length,
       });
-      const lat = Math.round(performance.now() - inicio);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = (await res.json()) as { reply?: string };
-      if (!data.reply) throw new Error("resposta vazia");
-      setHistory((prev) => [...prev, { role: "assistant", content: data.reply! }]);
-      onTelemetry({ ts: new Date().toISOString(), status: "ok", latenciaMs: lat, perguntaChars: pergunta.length, respostaChars: data.reply.length });
-    } catch {
-      const lat = Math.round(performance.now() - inicio);
-      setErro("Assistente indisponível neste momento. O plano determinístico continua funcionando na aba Plano de cultivo.");
-      onTelemetry({ ts: new Date().toISOString(), status: "erro", latenciaMs: lat, perguntaChars: pergunta.length, respostaChars: 0 });
-    } finally {
-      clearTimeout(timer);
       setPensando(false);
-    }
+    }, delay);
   }
 
   return (
@@ -82,7 +71,6 @@ export function AssistantTab({
           <p key={i} className={`msg ${m.role === "user" ? "msg-user" : "msg-ia"}`}>{m.content}</p>
         ))}
         {pensando && <p className="msg msg-meta">LettuceIA está consultando o plano…</p>}
-        {erro && <p className="msg msg-ia">{erro}</p>}
       </div>
 
       <div className="chip-row" aria-label="Sugestões de pergunta">
@@ -95,7 +83,7 @@ export function AssistantTab({
         className="chat-input-row"
         onSubmit={(e) => {
           e.preventDefault();
-          void enviar(input);
+          enviar(input);
         }}
       >
         <input
@@ -111,7 +99,7 @@ export function AssistantTab({
 
       <p className="chat-disclaimer">
         Perguntas sobre defensivo, dose, aplicação ou diagnóstico de praga são encaminhadas a um responsável técnico.
-        A conexão é real: navegador → Worker (Cloudflare) → agente Hermes no servidor da equipe.
+        Modo demonstração offline: respostas preparadas pela equipe a partir do roteiro, sem chamada externa.
       </p>
     </div>
   );
