@@ -1,0 +1,3 @@
+# Next.js como verdade; Hermes como interface
+
+O MVP mantém dados-semente, regras, cálculos, fontes e guardrails num único serviço Next.js; o rascunho não é persistido no hackathon, e Postgres/Drizzle entra no primeiro incremento do SaaS para planos consentidos e auditoria. O Hermes roda no servidor como orquestrador da Responses API e só acessa o domínio pela tool Zod `simulate_crop_plan`; ele explica resultados, mas não é fonte de verdade, calculadora ou banco. Rejeitamos um serviço separado do agente, `load_plan` e busca vetorial no hackathon porque exigiriam ownership, estado e superfície operacional antes de existir volume que os justifique.
