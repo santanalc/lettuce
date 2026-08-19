@@ -7,9 +7,14 @@ const Arrow = () => (
 );
 
 const LeafMark = () => (
-  <svg aria-hidden="true" className="brand-mark" viewBox="0 0 44 44">
-    <path d="M21.8 4.8C13.2 5.2 6.6 11.7 6.6 20.1c0 8.5 6.5 15.4 15 15.9 1.2-6.5 3.4-12.1 7.2-17-3.1 6.1-4.1 12.6-3.5 19.4 7.3-2 12.6-8.6 12.6-16.4 0-8.4-6.5-15.3-14.8-16.1-.1 5.1-1.7 9.8-4.5 13.9 1.8-5 2.9-10 3.2-15Z" />
-  </svg>
+  <Image
+    aria-hidden="true"
+    className="brand-mark"
+    src="/lettuce/logo-mark.png"
+    alt=""
+    width={512}
+    height={512}
+  />
 );
 
 const MiniIcon = ({
@@ -84,7 +89,7 @@ const processSteps = [
     number: "03",
     title: "Receba um plano preliminar",
     copy: "Calendário, riscos, custos editáveis e comparação de ofertas chegam junto de premissas, datas e fontes.",
-    meta: "Faixas, não promessas",
+    meta: "Sempre em faixas",
   },
 ];
 
@@ -100,9 +105,9 @@ const faqs = [
       "Não nesta demonstração. Ela usa snapshots públicos versionados e datados, preparados para não depender da disponibilidade de serviços externos durante a apresentação.",
   },
   {
-    question: "O Hermes cria ou altera meu plano?",
+    question: "A LettuceIA cria ou altera meu plano?",
     answer:
-      "Não. O Hermes explica resultados já calculados, compara opções e aponta fontes. Alterações acontecem nos campos do plano e disparam um novo cálculo determinístico.",
+      "Não. A LettuceIA explica resultados já calculados, compara opções e aponta fontes. Alterações acontecem nos campos do plano e disparam um novo cálculo determinístico.",
   },
   {
     question: "Posso pedir indicação ou dose de defensivo?",
@@ -129,10 +134,13 @@ export default function Home() {
           <div className="nav-links">
             <a href="#produto">Produto</a>
             <a href="#como-funciona">Como funciona</a>
-            <a href="#hermes">Hermes</a>
+            <a href="#hermes">LettuceIA</a>
             <a href="#faq">FAQ</a>
           </div>
 
+          <a className="nav-login" href="https://app1.lettucebr.com">
+            Entrar
+          </a>
           <a className="nav-cta" href="#como-funciona">
             Explorar o talhão <Arrow />
           </a>
@@ -153,8 +161,9 @@ export default function Home() {
                 <span> com clareza.</span>
               </h1>
               <p className="hero-lead">
-                Uma leitura prática de cultivo, risco e mercado para o pequeno
-                produtor de hortaliças planejar um ciclo sem esconder premissas.
+                Cultivo, clima e mercado reunidos num plano que o pequeno
+                produtor de hortaliças confere pelo celular, com premissas e
+                fontes à vista.
               </p>
               <div className="hero-actions">
                 <a className="button button-lime" href="#como-funciona">
@@ -206,7 +215,7 @@ export default function Home() {
                   </div>
                   <div>
                     <dt>Ciclo de referência</dt>
-                    <dd>60–80 dias</dd>
+                    <dd>60 a 80 dias</dd>
                   </div>
                 </dl>
                 <p className="plan-disclaimer">
@@ -244,7 +253,7 @@ export default function Home() {
           <div className="problem-grid container">
             <SectionHeading
               eyebrow="Uma decisão, muitas variáveis"
-              title="Planejar o cultivo não deveria exigir cinco conversas separadas."
+              title="Planejar o cultivo hoje exige cinco conversas separadas."
               copy="Janela de plantio, manejo, risco climático, investimento e mercado mudam a mesma decisão. A Lettuce reúne essas peças em um plano para um talhão e um ciclo."
             />
 
@@ -328,8 +337,8 @@ export default function Home() {
           <div className="container">
             <SectionHeading
               eyebrow="Tudo no contexto do mesmo ciclo"
-              title="Um plano para agir — e perguntas para não ignorar."
-              copy="A Lettuce não preenche lacunas com confiança artificial. Quando falta evidência, mostra a pendência e preserva a incerteza."
+              title="Um plano para agir e as perguntas que ficam abertas."
+              copy="Quando falta evidência, a Lettuce mostra a pendência e preserva a incerteza, em vez de preencher a lacuna com confiança artificial."
             />
 
             <div className="capability-grid">
@@ -372,10 +381,11 @@ export default function Home() {
                     <MiniIcon name="cloud" />
                   </div>
                   <p className="card-label">Risco climático</p>
-                  <h3>Contexto regional, não diagnóstico do talhão</h3>
+                  <h3>Contexto regional para se antecipar</h3>
                   <p>
                     Horizonte, severidade, incerteza e ação preventiva aparecem
-                    ao lado da origem do dado.
+                    ao lado da origem do dado; o diagnóstico do talhão continua
+                    sendo trabalho de campo.
                   </p>
                 </div>
               </article>
@@ -393,7 +403,7 @@ export default function Home() {
                     <MiniIcon name="market" />
                   </div>
                   <p className="card-label">Mercado</p>
-                  <h3>Bruto e líquido não são a mesma oferta</h3>
+                  <h3>Quanto sobra depois dos custos do canal</h3>
                   <p>
                     Comissão, embalagem, frete e outros custos do canal ficam
                     separados da referência atacadista.
@@ -409,8 +419,8 @@ export default function Home() {
                 <h3>Custos editáveis, premissas visíveis</h3>
                 <p>
                   Quantidades, unidades e valores podem ser conferidos. Sem
-                  análise de solo, fertilizante fica como categoria — nunca como
-                  dose.
+                  análise de solo, o fertilizante entra como categoria de
+                  custo, e a dose fica com o responsável técnico.
                 </p>
                 <div
                   className="cost-lines"
@@ -436,16 +446,16 @@ export default function Home() {
           <div className="hermes-grid container">
             <div className="hermes-copy">
               <p className="eyebrow eyebrow-lime">
-                Hermes · explicador contextual
+                LettuceIA · explicações com fonte
               </p>
               <h2>
                 Entenda o porquê, sem entregar a decisão para uma caixa-preta.
               </h2>
               <p>
-                O Hermes consulta o plano atual para explicar resultados
-                calculados, comparar opções e apontar a fonte usada. Ele não
-                inventa dados, não calcula por texto livre e não escreve no seu
-                plano.
+                A LettuceIA consulta o plano atual para explicar resultados
+                calculados, comparar opções e apontar a fonte usada. Dado
+                inventado, cálculo por texto livre e escrita no seu plano ficam
+                fora do que ela faz.
               </p>
               <ul className="hermes-points">
                 <li>
@@ -469,14 +479,14 @@ export default function Home() {
 
             <div
               className="hermes-panel"
-              aria-label="Exemplo de conversa com Hermes"
+              aria-label="Exemplo de conversa com a LettuceIA"
             >
               <div className="panel-header">
                 <div className="hermes-avatar">
                   <LeafMark />
                 </div>
                 <div>
-                  <strong>Hermes</strong>
+                  <strong>LettuceIA</strong>
                   <span>Explicando o plano de alface</span>
                 </div>
                 <span className="online-dot" aria-label="Disponível" />
@@ -487,9 +497,9 @@ export default function Home() {
                 </p>
                 <div className="chat-answer">
                   <p>
-                    Neste exemplo, as duas opções estão na janela suportada, mas
-                    a faixa inicial de colheita da alface é mais curta. Isso não
-                    significa maior lucro nem menor risco.
+                    Neste exemplo, as duas opções estão dentro da janela de
+                    plantio, mas a faixa inicial de colheita da alface é mais
+                    curta. Isso não significa maior lucro nem menor risco.
                   </p>
                   <div className="citation-row">
                     <span>Embrapa · Circular 47</span>
@@ -531,7 +541,7 @@ export default function Home() {
               <article className="scope-card scope-later">
                 <div className="scope-title">
                   <span>Após o piloto</span>
-                  <h3>Hipóteses, não promessas</h3>
+                  <h3>Hipóteses em teste</h3>
                 </div>
                 <ul>
                   <li>WhatsApp, voz ou foto, se o uso pedir</li>
@@ -544,8 +554,8 @@ export default function Home() {
             </div>
 
             <p className="promise-line">
-              A Lettuce não promete cobertura, preço, produtividade, clima ou
-              retorno. Mostra faixas, premissas, data e fonte.
+              A Lettuce mostra faixas, premissas, data e fonte; cobertura,
+              preço, produtividade, clima e retorno seguem sem promessa.
             </p>
           </div>
         </section>
@@ -575,12 +585,12 @@ export default function Home() {
           <div className="closing-lines" aria-hidden="true" />
           <div className="closing-inner container">
             <p className="eyebrow eyebrow-lime">
-              Um talhão. Um ciclo. Uma decisão melhor informada.
+              Um talhão, um ciclo e uma decisão melhor informada.
             </p>
             <h2>Comece pela pergunta que você já tem.</h2>
             <p>
               A Lettuce organiza o que o campo, o calendário e o mercado
-              conseguem dizer — e deixa visível o que ainda precisa ser
+              conseguem dizer e deixa à vista o que ainda precisa ser
               confirmado.
             </p>
             <a className="button button-lime" href="#como-funciona">
@@ -604,7 +614,7 @@ export default function Home() {
           <nav aria-label="Navegação do rodapé">
             <a href="#produto">Produto</a>
             <a href="#como-funciona">Como funciona</a>
-            <a href="#hermes">Hermes</a>
+            <a href="#hermes">LettuceIA</a>
             <a href="#faq">FAQ</a>
           </nav>
         </div>
