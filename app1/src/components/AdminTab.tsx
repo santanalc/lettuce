@@ -17,7 +17,7 @@ const CONTRIBUICOES = [
   "Motor determinístico de elegibilidade, calendário, investimento, preço e risco (src/engine), com dinheiro em centavos inteiros e regras fail-closed.",
   "Seeds versionados com proveniência: crop-profiles.v1, source-catalog.v1, market-observations.v1, climate-snapshot-2026-08-19 e demo-economic-scenario.v1.",
   "Interface responsiva das duas telas do fluxo (configurar o plano e plano econômico), com custos editáveis e recálculo imediato.",
-  "Integração real do assistente: LettuceIA no navegador → Pages Function (Worker) → agente Hermes no VPS da equipe, com token no servidor.",
+  "Assistente LettuceIA em modo demonstração offline: matcher de intenção e respostas preparadas pela equipe, com recusa regulada e fontes citadas, rodando 100% no navegador.",
   "Esta tela de administração, com os fixtures do blueprint executados ao vivo no navegador e telemetria sanitizada da sessão.",
   "Landing lettucebr.com com a escrita refinada pela diretriz da equipe e o logo oficial.",
 ];
